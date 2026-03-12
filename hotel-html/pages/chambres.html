@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chambres & Suites — Grand Hôtel Lumière</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+<div class="curseur"></div>
+<div class="curseur-anneau"></div>
+
+<nav id="navbar" class="scrolled">
+  <a href="../index.html" class="navbar-logo">LUMIÈRE<small>Grand Hôtel & Spa</small></a>
+  <div class="navbar-links" id="nav-links">
+    <a href="../index.html">Accueil</a>
+    <a href="chambres.html" class="active">Chambres</a>
+    <a href="restaurant.html">Restaurant</a>
+    <a href="spa.html">Spa</a>
+    <a href="evenements.html">Événements</a>
+    <a href="contact.html">Contact</a>
+    <a href="../reservations/reservation.html" class="btn btn-or"><span>Réserver</span></a>
+  </div>
+  <button class="navbar-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Page Hero -->
+<div style="padding:10rem 6% 5rem;background:linear-gradient(160deg,var(--noir-3),var(--noir));border-bottom:1px solid rgba(201,168,76,0.1)">
+  <p class="titre-deco anim-fade-up">✦ Hébergement</p>
+  <div class="sep"></div>
+  <h1 class="titre-section anim-fade-up delay-2">Chambres & <em>Suites</em></h1>
+  <p class="sous-titre anim-fade-up delay-3">86 chambres et suites d'exception — du confort raffiné à l'extravagance absolue.</p>
+</div>
+
+<section id="chambres-apercu">
+  <!-- Barre de filtres + tri -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem">
+    <div class="filtres" style="margin-bottom:0">
+      <button class="filtre-btn actif" data-filtre="tous">Tous</button>
+      <button class="filtre-btn" data-filtre="simple">Simple</button>
+      <button class="filtre-btn" data-filtre="double">Double</button>
+      <button class="filtre-btn" data-filtre="couple">Couple</button>
+      <button class="filtre-btn" data-filtre="suite-luxe">Suite Luxe</button>
+      <button class="filtre-btn" data-filtre="suite-royale">Suite Royale</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span id="compteur-chambres" style="font-size:0.8rem;color:var(--gris)"></span>
+      <select id="tri-prix" style="background:var(--noir-2);border:1px solid rgba(201,168,76,0.2);color:var(--ivoire);padding:0.55rem 1rem;font-family:var(--ff-corps);font-size:0.82rem;cursor:pointer">
+        <option value="">Trier par prix</option>
+        <option value="asc">Prix croissant</option>
+        <option value="desc">Prix décroissant</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="chambres-grille" id="grille-chambres">
+
+    <div class="chambre-card reveal" data-type="simple" data-prix="190">
+      <div class="chambre-img">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80" alt="Chambre Simple">
+        <div class="chambre-type-badge">Simple</div>
+      </div>
+      <div class="chambre-info">
+        <h3 class="chambre-nom">Chambre Simple</h3>
+        <p class="chambre-desc">Chambre individuelle lumineuse avec vue sur les jardins. Décoration soignée, literie haut de gamme.</p>
+        <div class="chambre-amenities">
+          <span class="amenity">25 m²</span><span class="amenity">Lit Queen</span>
+          <span class="amenity">Wi-Fi Premium</span><span class="amenity">Minibar</span>
+          <span class="amenity">Coffre-fort</span><span class="amenity">Sèche-cheveux</span>
+        </div>
+        <div class="chambre-pied">
+          <div class="chambre-prix"><strong>190</strong><span> €/nuit</span></div>
+          <a href="../reservations/reservation.html?type=simple" class="btn btn-or" style="padding:0.6rem 1.4rem;font-size:0.6rem"><span>Réserver</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card reveal" data-type="double" data-prix="290">
+      <div class="chambre-img">
+        <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=500&q=80" alt="Chambre Double">
+        <div class="chambre-type-badge">Double</div>
+      </div>
+      <div class="chambre-info">
+        <h3 class="chambre-nom">Chambre Double</h3>
+        <p class="chambre-desc">Spacieuse chambre avec lit king-size, terrasse privée et salle de bain en marbre.</p>
+        <div class="chambre-amenities">
+          <span class="amenity">38 m²</span><span class="amenity">King-Size</span>
+          <span class="amenity">Terrasse</span><span class="amenity">Baignoire</span>
+          <span class="amenity">Peignoirs</span><span class="amenity">Télévision 4K</span>
+        </div>
+        <div class="chambre-pied">
+          <div class="chambre-prix"><strong>290</strong><span> €/nuit</span></div>
+          <a href="../reservations/reservation.html?type=double" class="btn btn-or" style="padding:0.6rem 1.4rem;font-size:0.6rem"><span>Réserver</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card reveal" data-type="couple" data-prix="390">
+      <div class="chambre-img">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&q=80" alt="Chambre Couple">
+        <div class="chambre-type-badge">Couple</div>
+      </div>
+      <div class="chambre-info">
+        <h3 class="chambre-nom">Chambre Couple</h3>
+        <p class="chambre-desc">L'escapade romantique par excellence — jacuzzi privatif, pétales de roses, champagne à l'arrivée.</p>
+        <div class="chambre-amenities">
+          <span class="amenity">42 m²</span><span class="amenity">Jacuzzi</span>
+          <span class="amenity">Champagne</span><span class="amenity">Pétales de roses</span>
+          <span class="amenity">Vue Paris</span><span class="amenity">Aromathérapie</span>
+        </div>
+        <div class="chambre-pied">
+          <div class="chambre-prix"><strong>390</strong><span> €/nuit</span></div>
+          <a href="../reservations/reservation.html?type=couple" class="btn btn-or" style="padding:0.6rem 1.4rem;font-size:0.6rem"><span>Réserver</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card reveal" data-type="suite-luxe" data-prix="590">
+      <div class="chambre-img">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500&q=80" alt="Suite Luxe">
+        <div class="chambre-type-badge">Suite Luxe</div>
+      </div>
+      <div class="chambre-info">
+        <h3 class="chambre-nom">Suite Luxe</h3>
+        <p class="chambre-desc">Suite panoramique avec salon séparé, salle à manger privée et service de majordome 24h/24.</p>
+        <div class="chambre-amenities">
+          <span class="amenity">85 m²</span><span class="amenity">Majordome</span>
+          <span class="amenity">Salon privé</span><span class="amenity">2 salles de bain</span>
+          <span class="amenity">Panoramique</span><span class="amenity">Piano</span>
+        </div>
+        <div class="chambre-pied">
+          <div class="chambre-prix"><strong>590</strong><span> €/nuit</span></div>
+          <a href="../reservations/reservation.html?type=suite-luxe" class="btn btn-or" style="padding:0.6rem 1.4rem;font-size:0.6rem"><span>Réserver</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card reveal" data-type="suite-royale" data-prix="1200">
+      <div class="chambre-img">
+        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=80" alt="Suite Royale">
+        <div class="chambre-type-badge">Suite Royale</div>
+      </div>
+      <div class="chambre-info">
+        <h3 class="chambre-nom">Suite Royale</h3>
+        <p class="chambre-desc">Notre joyau absolu — piscine privée sur terrasse 180°, chef personnel, voiture avec chauffeur.</p>
+        <div class="chambre-amenities">
+          <span class="amenity">250 m²</span><span class="amenity">Piscine privée</span>
+          <span class="amenity">Chef personnel</span><span class="amenity">Terrasse 180°</span>
+          <span class="amenity">Chauffeur</span><span class="amenity">Spa privatif</span>
+        </div>
+        <div class="chambre-pied">
+          <div class="chambre-prix"><strong>1 200</strong><span> €/nuit</span></div>
+          <a href="../reservations/reservation.html?type=suite-royale" class="btn btn-or" style="padding:0.6rem 1.4rem;font-size:0.6rem"><span>Réserver</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer style="background:var(--noir);border-top:1px solid rgba(201,168,76,0.12);padding:2.5rem 6%;text-align:center">
+  <p style="color:var(--gris);font-size:0.82rem">© 2024 Grand Hôtel Lumière — <a href="../index.html" style="color:var(--or)">Retour à l'accueil</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/filters.js"></script>
+</body>
+</html>

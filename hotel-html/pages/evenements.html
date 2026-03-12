@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Événements — Grand Hôtel Lumière</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+<div class="curseur"></div><div class="curseur-anneau"></div>
+<nav id="navbar" class="scrolled">
+  <a href="../index.html" class="navbar-logo">LUMIÈRE<small>Grand Hôtel & Spa</small></a>
+  <div class="navbar-links" id="nav-links">
+    <a href="../index.html">Accueil</a><a href="chambres.html">Chambres</a>
+    <a href="restaurant.html">Restaurant</a><a href="spa.html">Spa</a>
+    <a href="evenements.html" class="active">Événements</a><a href="contact.html">Contact</a>
+    <a href="../reservations/reservation.html" class="btn btn-or"><span>Réserver</span></a>
+  </div>
+  <button class="navbar-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:10rem 6% 5rem;background:linear-gradient(160deg,var(--noir-3),var(--noir));border-bottom:1px solid rgba(201,168,76,0.1)">
+  <p class="titre-deco anim-fade-up">✦ Célébrations</p>
+  <div class="sep"></div>
+  <h1 class="titre-section anim-fade-up delay-2">Vos <em>Événements</em> d'Exception</h1>
+  <p class="sous-titre anim-fade-up delay-3">Mariages de rêve, galas fastueux, séminaires d'entreprise — nous transformons vos projets en légendes.</p>
+</div>
+
+<section style="background:var(--noir-2)">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.08)">
+    <div class="service-item reveal"><span class="service-icone">💍</span><h3 class="service-nom">Mariages</h3><p class="service-desc">Cérémonie, cocktail, dîner de gala — jusqu'à 400 convives dans nos salons historiques.</p></div>
+    <div class="service-item reveal"><span class="service-icone">🏢</span><h3 class="service-nom">Séminaires</h3><p class="service-desc">Espaces de 20 à 300 personnes, équipements audiovisuels, services traiteur haut de gamme.</p></div>
+    <div class="service-item reveal"><span class="service-icone">🎂</span><h3 class="service-nom">Anniversaires</h3><p class="service-desc">Fêtes privées sur mesure, décoration florale, animation, chef dédié à votre célébration.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-entete reveal" style="text-align:center;margin-bottom:3rem">
+    <p class="titre-deco">✦ Demande</p><div class="sep sep-centre"></div>
+    <h2 class="titre-section">Planifier votre <em>Événement</em></h2>
+  </div>
+  <form class="form-reservation reveal" style="max-width:700px;margin:0 auto" id="form-event" novalidate>
+    <div class="form-grille">
+      <div class="form-groupe"><label>Nom complet *</label><input type="text" id="evt-nom" required></div>
+      <div class="form-groupe"><label>Email *</label><input type="email" id="evt-email" required></div>
+      <div class="form-groupe"><label>Téléphone</label><input type="tel" id="evt-tel"></div>
+      <div class="form-groupe"><label>Type d'événement *</label>
+        <select id="evt-type" required>
+          <option value="">— Choisir —</option>
+          <option value="Mariage">Mariage</option>
+          <option value="Anniversaire">Anniversaire</option>
+          <option value="Séminaire">Séminaire d'entreprise</option>
+          <option value="Gala">Gala</option>
+          <option value="Cocktail">Cocktail</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+      <div class="form-groupe"><label>Date souhaitée *</label><input type="date" id="evt-date" required></div>
+      <div class="form-groupe"><label>Nombre d'invités *</label><input type="number" id="evt-invites" min="1" value="50" required></div>
+      <div class="form-groupe"><label>Budget estimé (€)</label><input type="number" id="evt-budget" min="0"></div>
+      <div class="form-groupe"><label>Salle préférée</label>
+        <select id="evt-salle">
+          <option value="">— Au choix de l'équipe —</option>
+          <option value="Grand Salon">Grand Salon (400 pers.)</option>
+          <option value="Salon Versailles">Salon Versailles (150 pers.)</option>
+          <option value="Terrasse Lumière">Terrasse Lumière (80 pers.)</option>
+          <option value="Salle Prestige">Salle Prestige (30 pers.)</option>
+        </select>
+      </div>
+      <div class="form-groupe pleine"><label>Description du projet *</label><textarea id="evt-desc" rows="4" placeholder="Décrivez votre événement idéal…" required></textarea></div>
+      <div class="form-groupe pleine">
+        <button type="submit" class="btn btn-or" style="width:100%;justify-content:center;padding:1.1rem"><span>Envoyer ma Demande</span></button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<footer style="background:var(--noir);border-top:1px solid rgba(201,168,76,0.12);padding:2.5rem 6%;text-align:center">
+  <p style="color:var(--gris);font-size:0.82rem">© 2024 Grand Hôtel Lumière — <a href="../index.html" style="color:var(--or)">Retour à l'accueil</a></p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.getElementById('form-event')?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.innerHTML = '<span class="spinner"></span>'; btn.disabled = true;
+  const payload = {
+    nom: document.getElementById('evt-nom').value, email: document.getElementById('evt-email').value,
+    telephone: document.getElementById('evt-tel').value, type_event: document.getElementById('evt-type').value,
+    date_event: document.getElementById('evt-date').value, nb_invites: document.getElementById('evt-invites').value,
+    budget: document.getElementById('evt-budget').value, salle: document.getElementById('evt-salle').value,
+    description: document.getElementById('evt-desc').value,
+  };
+  try {
+    const res = await fetch('/hotel-luxe/api/reserver_evenement.php', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    const data = await res.json();
+    afficherToast(data.success ? `✓ Demande envoyée — Réf: ${data.reference}` : data.message, data.success ? 'succes' : 'erreur');
+    if (data.success) e.target.reset();
+  } catch { afficherToast('Erreur réseau', 'erreur'); }
+  btn.innerHTML = '<span>Envoyer ma Demande</span>'; btn.disabled = false;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+/* ============================================================
+   animations.css — Hôtel Luxe — Animations & Transitions
+   ============================================================ */
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.3; transform: scaleY(0.6); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes pulse-or {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
+}
+
+@keyframes orbitFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-15px) rotate(1deg); }
+  66%       { transform: translateY(8px) rotate(-1deg); }
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 60px; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+/* ── Classes utilitaires animation ─────────────────────────── */
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+.anim-fade-left {
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease forwards;
+}
+.anim-fade-right {
+  opacity: 0;
+  animation: fadeInRight 0.8s ease forwards;
+}
+.anim-scale {
+  opacity: 0;
+  animation: scaleIn 0.7s ease forwards;
+}
+
+/* Délais en cascade */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+
+/* ── Scroll reveal (JS déclenché) ───────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Délais pour les éléments en grille */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal:nth-child(6) { transition-delay: 0.5s; }
+
+/* ── Hero animations ────────────────────────────────────────── */
+.hero-badge  { animation: fadeInUp 0.6s ease 0.3s both; }
+.hero-titre  { animation: fadeInUp 0.8s ease 0.5s both; }
+.hero-sous   { animation: fadeInUp 0.8s ease 0.7s both; }
+.hero-btns   { animation: fadeInUp 0.8s ease 0.9s both; }
+.hero-scroll { animation: fadeInUp 0.8s ease 1.2s both; }
+
+/* ── Skeleton loader ────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--noir-2) 25%, rgba(201,168,76,0.06) 50%, var(--noir-2) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Particule flottante hero ───────────────────────────────── */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.6);
+  animation: orbitFloat 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Bouton pulse ───────────────────────────────────────────── */
+.btn-pulse { animation: pulse-or 2s ease-in-out infinite; }
+
+/* ── Ligne or croissante ────────────────────────────────────── */
+.sep.animated {
+  width: 0;
+  animation: lineGrow 0.8s ease forwards;
+}
+
+/* ── Loading spinner ────────────────────────────────────────── */
+.spinner {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 2px solid rgba(201,168,76,0.3);
+  border-top-color: var(--or);
+  border-radius: 50%;
+  animation: spinSlow 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+/* ── Page transition ────────────────────────────────────────── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--noir);
+  z-index: 9998;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.page-transition.actif { transform: scaleY(1); transform-origin: top; }
+
+/* ── Curseur personnalisé ───────────────────────────────────── */
+.curseur {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--or);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: difference;
+}
+.curseur-anneau {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,168,76,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: transform 0.4s ease, width 0.3s ease, height 0.3s ease;
+}
+body:has(a:hover) .curseur-anneau,
+body:has(button:hover) .curseur-anneau {
+  width: 60px; height: 60px;
+}
+
+
+/* ============================================================
+   MODAL CHAMBRE — Animations
+   ============================================================ */
+
+/* ── Animation staggerée des items équipements / avantages ─── */
+@keyframes itemAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.modal-equip-item.anim-stagger,
+.modal-avantage-item.anim-stagger {
+  opacity: 0;
+  animation: itemAppear 0.35s ease forwards;
+}
+
+/* ── Entrée de l'image ─────────────────────────────────────── */
+@keyframes imageReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+.modal-chambre-overlay.open .modal-chambre-img {
+  animation: imageReveal 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both;
+}
+
+/* ── Slide-in du badge et du prix sur l'image ──────────────── */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-chambre-overlay.open .modal-chambre-badge-over {
+  animation: slideInLeft 0.5s ease 0.35s both;
+}
+.modal-chambre-overlay.open .modal-chambre-prix-over {
+  animation: slideInUp 0.5s ease 0.4s both;
+}
+
+/* ── Entrée du contenu textuel ─────────────────────────────── */
+@keyframes contentFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-chambre-overlay.open .modal-chambre-header {
+  animation: contentFade 0.5s ease 0.25s both;
+}
+.modal-chambre-overlay.open .modal-chambre-desc {
+  animation: contentFade 0.5s ease 0.32s both;
+}
+.modal-chambre-overlay.open .modal-chambre-section:nth-of-type(1) {
+  animation: contentFade 0.5s ease 0.38s both;
+}
+.modal-chambre-overlay.open .modal-chambre-section:nth-of-type(2) {
+  animation: contentFade 0.5s ease 0.44s both;
+}
+.modal-chambre-overlay.open .modal-chambre-cta {
+  animation: contentFade 0.5s ease 0.5s both;
+}
+
+/* ── Rotation du bouton fermer ─────────────────────────────── */
+.modal-chambre-close span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.modal-chambre-close:hover span {
+  transform: rotate(90deg);
+}
+
+/* ── Shimmer doré sur l'image ──────────────────────────────── */
+.modal-chambre-image-col::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(201, 168, 76, 0) 30%,
+    rgba(201, 168, 76, 0.06) 50%,
+    rgba(201, 168, 76, 0) 70%
+  );
+  background-size: 200% 100%;
+  animation: modalShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes modalShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

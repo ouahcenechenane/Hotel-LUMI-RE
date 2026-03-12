@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réservation — Grand Hôtel Lumière</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+<div class="curseur"></div>
+<div class="curseur-anneau"></div>
+
+<nav id="navbar" class="scrolled">
+  <a href="../index.html" class="navbar-logo">LUMIÈRE<small>Grand Hôtel & Spa</small></a>
+  <div class="navbar-links" id="nav-links">
+    <a href="../index.html">Accueil</a>
+    <a href="../pages/chambres.html">Chambres</a>
+    <a href="../pages/restaurant.html">Restaurant</a>
+    <a href="../pages/spa.html">Spa</a>
+    <a href="../pages/evenements.html">Événements</a>
+    <a href="../pages/contact.html">Contact</a>
+    <a href="reservation.html" class="btn btn-or active"><span>Réserver</span></a>
+  </div>
+  <button class="navbar-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div style="padding:10rem 6% 5rem;background:linear-gradient(160deg,var(--noir-3),var(--noir));border-bottom:1px solid rgba(201,168,76,0.1)">
+  <p class="titre-deco anim-fade-up">✦ Réservation</p>
+  <div class="sep"></div>
+  <h1 class="titre-section anim-fade-up delay-2">Votre <em>Séjour d'Exception</em></h1>
+  <p class="sous-titre anim-fade-up delay-3">Remplissez le formulaire ci-dessous — nous confirmons votre réservation sous 2h.</p>
+</div>
+
+<section style="max-width:900px;margin:0 auto;padding:6rem 2rem">
+
+  <!-- Formulaire principal -->
+  <form class="form-reservation reveal" id="form-reservation" novalidate>
+    <div class="form-grille">
+
+      <!-- Informations personnelles -->
+      <div class="form-groupe pleine">
+        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--or);margin-bottom:1.5rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(201,168,76,0.15)">
+          01 — VOS COORDONNÉES
+        </div>
+      </div>
+
+      <div class="form-groupe">
+        <label for="nom">Nom complet *</label>
+        <input type="text" id="nom" name="nom" placeholder="Martin" required>
+      </div>
+
+      <div class="form-groupe">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+      </div>
+
+      <div class="form-groupe">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00">
+      </div>
+
+      <!-- Détails du séjour -->
+      <div class="form-groupe pleine">
+        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--or);margin-bottom:1.5rem;margin-top:1rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(201,168,76,0.15)">
+          02 — DÉTAILS DU SÉJOUR
+        </div>
+      </div>
+
+      <div class="form-groupe pleine">
+        <label for="type-chambre">Type de chambre *</label>
+        <select id="type-chambre" name="type" required>
+          <option value="">— Choisissez une catégorie —</option>
+          <option value="simple">Chambre Simple — à partir de 190 €/nuit</option>
+          <option value="double">Chambre Double — à partir de 290 €/nuit</option>
+          <option value="couple">Chambre Couple — à partir de 390 €/nuit</option>
+          <option value="suite-luxe">Suite Luxe — à partir de 590 €/nuit</option>
+          <option value="suite-royale">Suite Royale — à partir de 1 200 €/nuit</option>
+        </select>
+      </div>
+
+      <div class="form-groupe">
+        <label for="date-arrivee">Date d'arrivée *</label>
+        <input type="date" id="date-arrivee" name="date_arrivee" required>
+      </div>
+
+      <div class="form-groupe">
+        <label for="date-depart">Date de départ *</label>
+        <input type="date" id="date-depart" name="date_depart" required>
+      </div>
+
+      <div class="form-groupe">
+        <label for="nb-personnes">Nombre de personnes *</label>
+        <input type="number" id="nb-personnes" name="nb_personnes" min="1" max="6" value="1" required>
+      </div>
+
+      <!-- Indicateur de disponibilité -->
+      <div class="form-groupe" style="justify-content:center">
+        <label style="opacity:0">Disponibilité</label>
+        <div id="dispo-badge" style="padding:0.9rem;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;display:flex;align-items:center"></div>
+      </div>
+
+      <!-- Récapitulatif prix (JS) -->
+      <div class="prix-recap" id="prix-recap" style="display:none">
+        <h4>Récapitulatif tarifaire</h4>
+        <div class="prix-ligne"><span>Prix par nuit</span><span id="recap-nuit">—</span></div>
+        <div class="prix-ligne"><span>Séjour</span><span id="recap-nuits">—</span></div>
+        <div class="prix-ligne" id="ligne-supplement" style="color:var(--or-clair)"><span id="recap-supplement"></span><span></span></div>
+        <div class="prix-total-ligne"><span>Total estimé</span><strong id="recap-total">—</strong></div>
+        <p style="font-size:0.72rem;color:var(--gris);margin-top:0.8rem">* Les taxes de séjour (4,60 €/nuit/personne) seront ajoutées à l'arrivée.</p>
+      </div>
+
+      <!-- Demandes spéciales -->
+      <div class="form-groupe pleine">
+        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.25em;color:var(--or);margin-bottom:1.5rem;margin-top:1rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(201,168,76,0.15)">
+          03 — DEMANDES SPÉCIALES
+        </div>
+      </div>
+
+      <div class="form-groupe pleine">
+        <label for="demandes">Demandes particulières</label>
+        <textarea id="demandes" name="demandes_speciales" rows="4" placeholder="Arrivée tardive, lit bébé, allergies alimentaires, célébration particulière..."></textarea>
+      </div>
+
+      <div class="form-groupe pleine">
+        <button type="submit" id="btn-reserver" class="btn btn-or" style="width:100%;justify-content:center;padding:1.2rem;font-size:0.72rem">
+          <span>Confirmer ma Réservation</span>
+        </button>
+        <p style="font-size:0.75rem;color:var(--gris);margin-top:0.8rem;text-align:center">
+          🔒 Paiement sécurisé à l'hôtel — Annulation gratuite jusqu'à 48h avant l'arrivée
+        </p>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Zone de confirmation (affichée par JS après succès) -->
+  <div id="confirmation" style="display:none;background:var(--noir-2);border:1px solid rgba(201,168,76,0.3)"></div>
+
+  <!-- Garanties -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;text-align:center" class="reveal">
+    <div style="padding:1.5rem;border:1px solid rgba(201,168,76,0.1)">
+      <div style="font-size:1.8rem;margin-bottom:0.5rem">🔒</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.15em;color:var(--or)">SÉCURISÉ</div>
+      <p style="font-size:0.8rem;color:var(--gris);margin-top:0.4rem">Données personnelles protégées</p>
+    </div>
+    <div style="padding:1.5rem;border:1px solid rgba(201,168,76,0.1)">
+      <div style="font-size:1.8rem;margin-bottom:0.5rem">✓</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.15em;color:var(--or)">CONFIRMATION 2H</div>
+      <p style="font-size:0.8rem;color:var(--gris);margin-top:0.4rem">Par email garantie</p>
+    </div>
+    <div style="padding:1.5rem;border:1px solid rgba(201,168,76,0.1)">
+      <div style="font-size:1.8rem;margin-bottom:0.5rem">↩</div>
+      <div style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.15em;color:var(--or)">ANNULATION LIBRE</div>
+      <p style="font-size:0.8rem;color:var(--gris);margin-top:0.4rem">Jusqu'à 48h avant l'arrivée</p>
+    </div>
+  </div>
+
+</section>
+
+<footer style="background:var(--noir);border-top:1px solid rgba(201,168,76,0.12);padding:2.5rem 6%;text-align:center">
+  <p style="color:var(--gris);font-size:0.82rem">© 2024 Grand Hôtel Lumière — <a href="../index.html" style="color:var(--or)">Retour à l'accueil</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/reservation.js"></script>
+
+<script>
+// Pré-remplir le type depuis l'URL : ?type=double
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const type   = params.get('type');
+  if (type) {
+    const sel = document.getElementById('type-chambre');
+    if (sel) { sel.value = type; sel.dispatchEvent(new Event('change')); }
+  }
+})();
+</script>
+</body>
+</html>

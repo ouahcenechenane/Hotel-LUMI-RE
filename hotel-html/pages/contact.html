@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Grand Hôtel Lumière</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+<div class="curseur"></div><div class="curseur-anneau"></div>
+<nav id="navbar" class="scrolled">
+  <a href="../index.html" class="navbar-logo">LUMIÈRE<small>Grand Hôtel & Spa</small></a>
+  <div class="navbar-links" id="nav-links">
+    <a href="../index.html">Accueil</a><a href="chambres.html">Chambres</a>
+    <a href="restaurant.html">Restaurant</a><a href="spa.html">Spa</a>
+    <a href="evenements.html">Événements</a><a href="contact.html" class="active">Contact</a>
+    <a href="../reservations/reservation.html" class="btn btn-or"><span>Réserver</span></a>
+  </div>
+  <button class="navbar-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:10rem 6% 5rem;background:linear-gradient(160deg,var(--noir-3),var(--noir));border-bottom:1px solid rgba(201,168,76,0.1)">
+  <p class="titre-deco anim-fade-up">✦ Nous Rejoindre</p>
+  <div class="sep"></div>
+  <h1 class="titre-section anim-fade-up delay-2"><em>Contact</em> & Accès</h1>
+  <p class="sous-titre anim-fade-up delay-3">Notre équipe est disponible 24h/24, 7j/7 pour répondre à toutes vos demandes.</p>
+</div>
+
+<section style="display:grid;grid-template-columns:1fr 1fr;gap:6rem">
+  <div class="reveal-left">
+    <p class="titre-deco">✦ Nos Coordonnées</p><div class="sep"></div>
+    <h2 class="titre-section" style="font-size:2.2rem;margin-bottom:2.5rem">Restons en <em>contact</em></h2>
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      <div style="display:flex;gap:1.2rem;align-items:flex-start">
+        <span style="color:var(--or);font-size:1.3rem;margin-top:0.1rem">📍</span>
+        <div><div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--or);margin-bottom:0.4rem">ADRESSE</div><p style="color:var(--gris);line-height:1.7">15, Avenue des Champs-Élysées<br>75008 Paris, France</p></div>
+      </div>
+      <div style="display:flex;gap:1.2rem;align-items:flex-start">
+        <span style="color:var(--or);font-size:1.3rem">📞</span>
+        <div><div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--or);margin-bottom:0.4rem">TÉLÉPHONE</div><p style="color:var(--gris)">+33 (0)1 42 00 00 00</p></div>
+      </div>
+      <div style="display:flex;gap:1.2rem;align-items:flex-start">
+        <span style="color:var(--or);font-size:1.3rem">✉️</span>
+        <div><div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--or);margin-bottom:0.4rem">EMAIL</div><p style="color:var(--gris)">bonjour@hotel-lumiere.fr</p></div>
+      </div>
+      <div style="display:flex;gap:1.2rem;align-items:flex-start">
+        <span style="color:var(--or);font-size:1.3rem">🕐</span>
+        <div><div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--or);margin-bottom:0.4rem">RÉCEPTION</div><p style="color:var(--gris)">24h/24, 7j/7</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal-right">
+    <p class="titre-deco">✦ Message</p><div class="sep"></div>
+    <h2 class="titre-section" style="font-size:2.2rem;margin-bottom:2rem">Écrivez-<em>nous</em></h2>
+    <form style="display:flex;flex-direction:column;gap:1.2rem" id="form-contact">
+      <div class="form-groupe"><label>Nom *</label><input type="text" id="ct-nom" required></div>
+      <div class="form-groupe"><label>Email *</label><input type="email" id="ct-email" required></div>
+      <div class="form-groupe"><label>Sujet</label>
+        <select id="ct-sujet">
+          <option value="Réservation">Réservation</option>
+          <option value="Événement">Événement</option>
+          <option value="Information">Information générale</option>
+          <option value="Réclamation">Réclamation</option>
+        </select>
+      </div>
+      <div class="form-groupe"><label>Message *</label><textarea id="ct-msg" rows="5" required></textarea></div>
+      <button type="submit" class="btn btn-or" style="align-self:flex-start;padding:1rem 2.5rem"><span>Envoyer le Message</span></button>
+    </form>
+  </div>
+</section>
+
+<footer style="background:var(--noir);border-top:1px solid rgba(201,168,76,0.12);padding:2.5rem 6%;text-align:center">
+  <p style="color:var(--gris);font-size:0.82rem">© 2024 Grand Hôtel Lumière — <a href="../index.html" style="color:var(--or)">Retour à l'accueil</a></p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.getElementById('form-contact')?.addEventListener('submit', e => {
+  e.preventDefault();
+  afficherToast('✓ Message envoyé — Nous vous répondrons sous 24h.', 'succes');
+  e.target.reset();
+});
+</script>
+</body>
+</html>

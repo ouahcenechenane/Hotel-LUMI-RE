@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant — Grand Hôtel Lumière</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+<div class="curseur"></div><div class="curseur-anneau"></div>
+<nav id="navbar" class="scrolled">
+  <a href="../index.html" class="navbar-logo">LUMIÈRE<small>Grand Hôtel & Spa</small></a>
+  <div class="navbar-links" id="nav-links">
+    <a href="../index.html">Accueil</a><a href="chambres.html">Chambres</a>
+    <a href="restaurant.html" class="active">Restaurant</a><a href="spa.html">Spa</a>
+    <a href="evenements.html">Événements</a><a href="contact.html">Contact</a>
+    <a href="../reservations/reservation.html" class="btn btn-or"><span>Réserver</span></a>
+  </div>
+  <button class="navbar-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+
+<div style="padding:10rem 6% 5rem;background:linear-gradient(160deg,var(--noir-3),var(--noir));border-bottom:1px solid rgba(201,168,76,0.1)">
+  <p class="titre-deco anim-fade-up">✦ Gastronomie</p>
+  <div class="sep"></div>
+  <h1 class="titre-section anim-fade-up delay-2">Le <em>Restaurant</em> Lumière</h1>
+  <p class="sous-titre anim-fade-up delay-3">3 Étoiles Michelin · Chef Jean-Baptiste Moreau · Paris 8ème</p>
+</div>
+
+<section style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center">
+  <div class="reveal-left">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant" style="width:100%;aspect-ratio:4/3;object-fit:cover">
+  </div>
+  <div class="reveal-right">
+    <p class="titre-deco">✦ L'Expérience</p>
+    <div class="sep"></div>
+    <h2 class="titre-section">Une <em>odyssée</em> culinaire</h2>
+    <div class="sep"></div>
+    <p style="color:var(--gris);line-height:1.9;margin-bottom:2rem">Le Chef Jean-Baptiste Moreau réinterprète la grande cuisine française avec une audace subtile. Chaque assiette est une invitation au voyage, composée de produits d'exception sélectionnés chez les meilleurs producteurs.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem">
+      <div style="border-left:2px solid var(--or);padding-left:1rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivoire)">Menu Découverte</div>
+        <div style="color:var(--or);font-size:1.3rem;font-family:'Cormorant Garamond',serif">185 €</div>
+        <div style="font-size:0.75rem;color:var(--gris)">7 services · Accords mets-vins</div>
+      </div>
+      <div style="border-left:2px solid var(--or);padding-left:1rem">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ivoire)">Menu Prestige</div>
+        <div style="color:var(--or);font-size:1.3rem;font-family:'Cormorant Garamond',serif">285 €</div>
+        <div style="font-size:0.75rem;color:var(--gris)">12 services · Grands crus</div>
+      </div>
+    </div>
+    <a href="#reserver-restaurant" class="btn btn-or"><span>Réserver une Table</span></a>
+  </div>
+</section>
+
+<!-- Formulaire réservation restaurant -->
+<section id="reserver-restaurant" style="background:var(--noir-2)">
+  <div class="section-entete reveal" style="text-align:center;margin-bottom:3rem">
+    <p class="titre-deco">✦ Réservation</p>
+    <div class="sep sep-centre"></div>
+    <h2 class="titre-section">Réserver une <em>Table</em></h2>
+  </div>
+  <form class="form-reservation reveal" id="form-restaurant" style="max-width:700px;margin:0 auto" novalidate>
+    <div class="form-grille">
+      <div class="form-groupe"><label>Nom complet *</label><input type="text" id="rst-nom" required></div>
+      <div class="form-groupe"><label>Email *</label><input type="email" id="rst-email" required></div>
+      <div class="form-groupe"><label>Téléphone</label><input type="tel" id="rst-tel"></div>
+      <div class="form-groupe"><label>Nombre de couverts *</label><input type="number" id="rst-couverts" min="1" max="20" value="2" required></div>
+      <div class="form-groupe"><label>Date *</label><input type="date" id="rst-date" required></div>
+      <div class="form-groupe"><label>Heure *</label>
+        <select id="rst-heure" required>
+          <option value="">— Choisir —</option>
+          <option value="12:00">12h00</option><option value="12:30">12h30</option>
+          <option value="13:00">13h00</option><option value="13:30">13h30</option>
+          <option value="19:00">19h00</option><option value="19:30">19h30</option>
+          <option value="20:00">20h00</option><option value="20:30">20h30</option>
+          <option value="21:00">21h00</option>
+        </select>
+      </div>
+      <div class="form-groupe pleine"><label>Menu</label>
+        <select id="rst-menu">
+          <option value="carte">À la carte</option>
+          <option value="decouverte">Menu Découverte — 185 €</option>
+          <option value="prestige">Menu Prestige — 285 €</option>
+        </select>
+      </div>
+      <div class="form-groupe pleine"><label>Message (allergies, occasion spéciale…)</label><textarea id="rst-msg" rows="3"></textarea></div>
+      <div class="form-groupe pleine">
+        <button type="submit" class="btn btn-or" style="width:100%;justify-content:center;padding:1.1rem"><span>Réserver ma Table</span></button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<footer style="background:var(--noir);border-top:1px solid rgba(201,168,76,0.12);padding:2.5rem 6%;text-align:center">
+  <p style="color:var(--gris);font-size:0.82rem">© 2024 Grand Hôtel Lumière — <a href="../index.html" style="color:var(--or)">Retour à l'accueil</a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.getElementById('form-restaurant')?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span>';
+  btn.disabled = true;
+
+  const payload = {
+    nom: document.getElementById('rst-nom').value,
+    email: document.getElementById('rst-email').value,
+    telephone: document.getElementById('rst-tel').value,
+    date_res: document.getElementById('rst-date').value,
+    heure_res: document.getElementById('rst-heure').value,
+    nb_couverts: document.getElementById('rst-couverts').value,
+    menu: document.getElementById('rst-menu').value,
+    message: document.getElementById('rst-msg').value,
+  };
+
+  try {
+    const res = await fetch('/hotel-luxe/api/reserver_restaurant.php', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    afficherToast(data.success ? `✓ Table réservée — Réf: ${data.reference}` : data.message, data.success ? 'succes' : 'erreur');
+    if (data.success) e.target.reset();
+  } catch { afficherToast('Erreur réseau', 'erreur'); }
+  btn.innerHTML = orig; btn.disabled = false;
+});
+</script>
+</body>
+</html>
