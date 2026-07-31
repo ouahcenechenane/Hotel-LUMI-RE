@@ -48,90 +48,9 @@
 
 ---
 
-> **💡 Pour ajouter d'autres captures** : déposer les fichiers dans `docs/screenshots/` et les référencer avec `![Titre](docs/screenshots/nom-fichier.png)`
-
----
-
-## 🎥 Démos vidéo
-
-> Les miniatures ci-dessous sont cliquables. Remplacer `VOTRE_ID_YOUTUBE` par l'identifiant de votre vidéo après l'upload sur YouTube.
->
-> **Comment obtenir l'ID** : dans l'URL `https://youtube.com/watch?v=`**`dQw4w9WgXcQ`**, l'ID est la partie en gras.
-
----
-
-### 📋 Flux 1 — Réservation chambre complète
-
-> *De la sélection sur le site client jusqu'à la confirmation par l'admin.*
-
-<div align="center">
-
-[![Démo Réservation Chambre](docs/screenshots/chambres.png)](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE)
-
-▶️ **[Voir la démo — Réservation chambre](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE)**
-
-</div>
-
-**Ce que montre cette vidéo :**
-- Parcourir le catalogue et filtrer par type de chambre
-- Ouvrir le modal de détail et remplir le formulaire de réservation
-- Réception de la réservation côté admin avec statut `en_attente`
-- Confirmation par l'admin et mise à jour du statut en `confirmée`
-
----
-
-### 👥 Flux 2 — Création d'un compte employé
-
-> *Ajout d'un nouvel employé et configuration de ses accès depuis le panneau superadmin.*
-
-<div align="center">
-
-[![Démo Création Compte Employé](docs/screenshots/gestion-comptes.png)](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE_2)
-
-▶️ **[Voir la démo — Création compte employé](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE_2)**
-
-</div>
-
-**Ce que montre cette vidéo :**
-- Ouvrir la modale "Nouveau compte" depuis Gestion des Comptes
-- Sélectionner l'option **"＋ Nouvel employé..."** dans la liste
-- Remplir les informations RH (matricule, nom, poste, département)
-- Choisir le service et configurer les permissions granulaires
-- Validation et apparition du compte dans le tableau de bord
-
----
-
-### 📊 Flux 3 — Navigation dans le dashboard admin
-
-> *Tour rapide de l'interface d'administration : dashboard, réservations, calendrier et statistiques.*
-
-<div align="center">
-
-[![Démo Dashboard Admin](docs/screenshots/dashboard.png)](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE_3)
-
-▶️ **[Voir la démo — Dashboard admin](https://youtube.com/watch?v=VOTRE_ID_YOUTUBE_3)**
-
-</div>
-
-**Ce que montre cette vidéo :**
-- Vue d'ensemble du dashboard (compteurs, activité récente)
-- Navigation entre les modules de réservations
-- Consultation du calendrier multi-services
-- Accès aux statistiques et graphiques de performance
-
----
-
-> **📹 Comment uploader et récupérer le lien YouTube :**
-> 1. Enregistrer l'écran avec [OBS Studio](https://obsproject.com/) (gratuit) ou l'outil intégré Windows (`Win + G`)
-> 2. Uploader la vidéo sur [YouTube Studio](https://studio.youtube.com) (peut rester en non-répertorié)
-> 3. Copier l'ID depuis l'URL et remplacer `VOTRE_ID_YOUTUBE` dans ce fichier
-
----
-
 ## 📋 Table des matières
 
-- [Aperçu](#aperçu-du-projet)
-- [Démos vidéo](#-démos-vidéo)
+- [Aperçu](#-aperçu-du-projet)
 - [Fonctionnalités](#fonctionnalités)
 - [Stack technique](#stack-technique)
 - [Structure du projet](#structure-du-projet)
@@ -139,7 +58,7 @@
 - [Configuration](#configuration)
 - [Base de données](#base-de-données)
 - [Rôles & Permissions](#rôles--permissions)
-- [Comptes par défaut](#comptes-par-défaut)
+- [Sécurité](#sécurité)
 
 ---
 
@@ -151,7 +70,6 @@
 - Formulaires de réservation en ligne (chambres, restaurant, spa, piscine, événements)
 - Calcul de prix dynamique via API
 - Vérification de disponibilité en temps réel
-- Réinitialisation de mot de passe client
 
 ### 🔧 Espace d'administration (admin/)
 
@@ -173,7 +91,7 @@
 ### 🔐 Système d'authentification
 - Double authentification : admins et comptes employés distincts
 - Sessions PHP sécurisées
-- Réinitialisation de mot de passe par token
+- Contrôle d'accès par rôle sur chaque page
 
 ---
 
@@ -255,14 +173,12 @@ hotel-luxe/
 │   └── reservations/
 │       └── reservation.html
 │
-├── docs/
-│   └── screenshots/              # Captures d'écran du projet
-│       ├── accueil.png
-│       ├── chambres.png
-│       ├── dashboard.png
-│       └── gestion-comptes.png
-│
-└── reset_password.php
+└── docs/
+    └── screenshots/              # Captures d'écran du projet
+        ├── accueil.png
+        ├── chambres.png
+        ├── dashboard.png
+        └── gestion-comptes.png
 ```
 
 ---
@@ -303,7 +219,11 @@ define('DB_USER', 'votre_utilisateur');
 define('DB_PASS', 'votre_mot_de_passe');
 ```
 
-**4. Accéder à l'application**
+**4. Créer un compte super-admin**
+
+Le script `hotel.sql` insère un compte super-admin de démonstration. Après l'installation, connecte-toi avec ce compte puis change immédiatement son mot de passe depuis l'interface d'administration (ou directement en base via un hash `password_hash()` généré côté PHP).
+
+**5. Accéder à l'application**
 
 | Interface | URL |
 |---|---|
@@ -371,17 +291,6 @@ voir_clients         voir_stats             voir_calendrier
 
 ---
 
-## Comptes par défaut
-
-> ⚠️ **Changer ces mots de passe immédiatement après l'installation.**
-
-| Type | Email | Mot de passe |
-|---|---|---|
-| Super Admin | `hghgg@hotel-luxe.com` | `hghgg@1234` |
-| Employé (exemple) | `sophie.martin@hotel-luxe.com` | `Employe@hghgg` |
-
----
-
 ## Sécurité
 
 - Mots de passe hashés avec `password_hash()` (BCrypt, coût 12)
@@ -389,6 +298,7 @@ voir_clients         voir_stats             voir_calendrier
 - Sorties HTML protégées par `htmlspecialchars()`
 - Contrôle d'accès à chaque page (`requireSuperAdmin()`, `requireAdmin()`, `requireAnyAuth()`)
 - Journal d'activité (`activity_logs`) pour la traçabilité complète
+- Les identifiants de démonstration ne sont **jamais** exposés publiquement ; ils sont générés localement lors de l'installation et doivent être changés immédiatement après le premier accès
 
 ---
 
